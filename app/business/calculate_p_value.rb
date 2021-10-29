@@ -13,8 +13,7 @@ class CalculatePValue
 
       test_conversion_rate = @test_converted / @test_sends
       test_standard_error = Math.sqrt((test_conversion_rate * (1 - test_conversion_rate) / @test_sends))
-
-      z_score = (control_conversion_rate - test_conversion_rate) / (Math.sqrt(control_standard_error ** 2) + Math.sqrt(test_standard_error ** 2))
+      z_score = (control_conversion_rate - test_conversion_rate) / Math.sqrt(((control_standard_error ** 2) + (test_standard_error ** 2)))
 
       p_value = calculate_cdf(z_score)
       return (1 - p_value) * 100
